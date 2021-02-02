@@ -16,6 +16,7 @@ public class SocketCliente {
 	static final String OPCION_RESTA = "2";
 	static final String OPCION_MULTIPLICAR = "3";
 	static final String OPCION_DIVIDIR = "4";
+	static String res = "";
 	static Scanner sc;
 
 	public static void main(String[] args) {
@@ -64,6 +65,7 @@ public class SocketCliente {
 		
 		try {
 			boolean cont = true;
+			
 			do {
 			socketCliente = new Socket();
 			socketCliente.connect(direccionServidor);
@@ -74,7 +76,7 @@ public class SocketCliente {
 
 			String numero1 = sc.nextLine();
 			String numero2 = sc.nextLine();
-			String operandos = numero1 + "-" + numero2;
+			String operandos = numero1 + "-" + numero2 + "-" + res;
 			salida.println(operandos);// 3-4
 
 			BufferedReader bf = new BufferedReader(entrada);
@@ -98,12 +100,13 @@ public class SocketCliente {
 				salida.close();
 				entrada.close();
 				socketCliente.close();
-				sc.close();
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+	
 
 	}
 
@@ -114,7 +117,7 @@ public class SocketCliente {
 		System.out.println("2 RESTAR");
 		System.out.println("3 MULTIPLICAR");
 		System.out.println("4 DIVIDIR");
-		String res = sc.nextLine();
+		res = sc.nextLine();
 
 		return res;
 	}
